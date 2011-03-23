@@ -20,7 +20,7 @@ Vagrant::Config.run do |config|
 
   # Forward a port from the guest to the host, which allows for outside
   # computers to access the VM, whereas host only networking does not.
-  # config.vm.forward_port "http", 80, 8080
+  config.vm.forward_port "http", 80, 8080
 
   # Share an additional folder to the guest VM. The first argument is
   # an identifier, the second is the path on the guest to mount the
@@ -31,10 +31,16 @@ Vagrant::Config.run do |config|
   # to this Vagrantfile), and adding some recipes and/or roles.
   #
   config.vm.provision :chef_solo do |chef|
-    chef.cookbooks_path = "cookbooks"
+    chef.cookbooks_path = ["cookbooks/akitaonrails", "cookbooks/teambox"]
     chef.add_recipe("teambox")
 
     chef.json.merge!({
+      :ruby_enterprise => {
+        :version      => '1.8.7-2009.10'
+      },
+      :passenger_enterprise => {
+        :version => "3.0.5"
+      },
       :mysql => {
         :server_root_password   => ENV['MYSQL_ROOT_PASSWD'] || 'papapa',
         :server_repl_password   => ENV['MYSQL_REPL_PASSWD'] || 'papapa',
@@ -50,6 +56,11 @@ Vagrant::Config.run do |config|
           :table_cache => '128',
           :max_heap_table_size => '32M'
         }
+      },
+      :memcached => {
+        :memory => 64,
+        :port => 11211,
+        :user => "nobody"
       }
     })
   end
