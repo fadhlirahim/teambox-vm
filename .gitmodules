@@ -1,6 +1,3 @@
-[submodule "teambox"]
-	path = teambox
-	url = https://github.com/teambox/teambox
 [submodule "cookbooks/akitaonrails"]
 	path = cookbooks/akitaonrails
 	url = https://github.com/akitaonrails/cookbooks.git
