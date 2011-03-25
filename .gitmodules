@@ -1,9 +1,0 @@
-[submodule "cookbooks/akitaonrails"]
-	path = cookbooks/akitaonrails
-	url = https://github.com/akitaonrails/cookbooks.git
-[submodule "cookbooks/opscode"]
-	path = cookbooks/opscode
-	url = https://github.com/opscode/cookbooks
-[submodule "cookbooks/apsoto"]
-	path = cookbooks/apsoto
-	url = https://github.com/apsoto/chef-repo
