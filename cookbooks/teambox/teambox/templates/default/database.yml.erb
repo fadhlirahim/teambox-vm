@@ -1,0 +1,23 @@
+development:
+  adapter: mysql
+  host: localhost
+  username: root 
+  password: <%= node["mysql"]["server_root_password"] %>
+  database: teambox2
+  
+test: &TEST
+  adapter: mysql
+  host: localhost
+  username: root 
+  password: <%= node["mysql"]["server_root_password"] %>
+  database: teambox2_test
+
+production:
+  adapter: mysql
+  host: localhost
+  username: root 
+  password: <%= node["mysql"]["server_root_password"] %>
+  database: teambox2_production
+
+cucumber:
+  <<: *TEST

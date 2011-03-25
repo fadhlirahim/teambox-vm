@@ -1,0 +1,18 @@
+server {
+  listen          80;
+
+  access_log      /data/teambox/current/log/webserver.access.log  main;
+  error_log       /data/teambox/current/log/webserver.error.log  debug;
+  root            /data/teambox/current/public;
+
+  passenger_enabled on;
+  rack_env <%= @node[:environment][:framework_env] %>;
+
+  # Set the max size for file uploads to 50Mb
+  client_max_body_size 50M;
+
+  error_page 500 502 503 504      /500.html;
+  location = /500.html {
+    root /data/teambox/current/public;
+  }
+}

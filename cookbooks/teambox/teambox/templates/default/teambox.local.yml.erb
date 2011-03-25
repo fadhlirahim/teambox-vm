@@ -1,0 +1,14 @@
+# Configuration shared between all environments:
+defaults: &defaults
+
+production:
+  <<: *defaults
+  secure_logins: false
+  app_domain: 127.0.0.1
+  allow_outgoing_email: false
+  autorefresh_interval: 20 # in seconds
+  allow_search: true
+  amazon_s3: false
+  smtp_settings:
+    :domain: teambox-vm.local
+
