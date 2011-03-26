@@ -8,6 +8,7 @@ require_recipe "mysql::server"
 require_recipe "sphinx"
 require_recipe "memcached"
 include_recipe "imagemagick::rmagick"
+ree_gem "rake"
 ree_gem "bundler"
 
 #For postgresql gem in Gemfile

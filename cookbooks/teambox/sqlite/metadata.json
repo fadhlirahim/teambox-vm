@@ -1,43 +1,36 @@
 {
-  "maintainer": "Opscode, Inc.",
-  "description": "Installs sqlite",
-  "recommendations": {
+    "recommendations": {
+    },
+    "attributes": {
+    },
+    "maintainer": "Opscode, Inc.",
+    "suggestions": {
+    },
+    "dependencies": {
+    },
+    "maintainer_email": "cookbooks@opscode.com",
+    "conflicting": {
+    },
+    "platforms": {
+      "debian": [
 
-  },
-  "maintainer_email": "cookbooks@opscode.com",
-  "recipes": {
-    "sqlite": ""
-  },
-  "suggestions": {
+      ],
+      "ubuntu": [
 
-  },
-  "platforms": {
-    "ubuntu": [
-
-    ],
-    "debian": [
-
-    ]
-  },
-  "version": "0.7.0",
-  "name": "sqlite",
-  "conflicting": {
-
-  },
-  "attributes": {
-
-  },
-  "providing": {
-    "sqlite": [
-
-    ]
-  },
-  "license": "Apache 2.0",
-  "long_description": "",
-  "replacing": {
-
-  },
-  "dependencies": {
-
+      ]
+    },
+    "license": "Apache 2.0",
+    "version": "0.7.1",
+    "providing": {
+    },
+    "recipes": {
+      "sqlite": "Installs sqlite"
+    },
+    "replacing": {
+    },
+    "name": "sqlite",
+    "description": "Installs sqlite",
+    "groupings": {
+    },
+    "long_description": ""
   }
-}

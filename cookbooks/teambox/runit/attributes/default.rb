@@ -1,6 +1,6 @@
 #
-# Cookbook Name:: apt
-# Recipe:: proxy
+# Cookbook Name:: runit
+# Attribute File:: sv_bin
 #
 # Copyright 2008-2009, Opscode, Inc.
 #
@@ -16,19 +16,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-package "apt-proxy" do 
-  action :install
-end
 
-service "apt-proxy" do
-  supports :restart => true, :status => false
-  action [ :enable, :start ]
-end
-
-remote_file "/etc/apt-proxy/apt-proxy-v2.conf" do
-  source "apt-proxy-v2.conf"
-  owner "root"
-  group "root"
-  mode 0644
-  notifies :restart, resources(:service => "apt-proxy")
+case platform
+when "ubuntu","debian"
+  set[:runit][:sv_bin] = "/usr/bin/sv"
+  set[:runit][:chpst_bin] = "/usr/bin/chpst"
+  set[:runit][:service_dir] = "/etc/service"
+  set[:runit][:sv_dir] = "/etc/sv"
+when "gentoo"
+  set[:runit][:sv_bin] = "/usr/bin/sv"
+  set[:runit][:chpst_bin] = "/usr/bin/chpst"
+  set[:runit][:service_dir] = "/etc/service"
+  set[:runit][:sv_dir] = "/var/service"
 end

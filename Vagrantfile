@@ -41,6 +41,7 @@ Vagrant::Config.run do |config|
   #
   config.vm.provision :chef_solo do |chef|
     chef.cookbooks_path = ["cookbooks/teambox"]
+    chef.log_level = :debug
 
     chef.add_recipe("teambox")
 

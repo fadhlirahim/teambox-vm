@@ -39,3 +39,4 @@ end
 ree_gem "passenger" do
   version node[:passenger_enterprise][:version]
 end
+

@@ -72,7 +72,7 @@ deploy "/data/teambox" do
   branch "master"
   revision "HEAD"
   action :deploy
-  migration_command "#{ruby_bin}/bundle exec rake db:create db:schema:load"
+  migration_command "#{ruby_bin}/bundle exec #{ruby_bin}/rake db:create db:schema:load"
   migrate true
   restart_command "touch tmp/restart.txt"
   create_dirs_before_symlink  ["tmp"]
@@ -102,17 +102,17 @@ deploy "/data/teambox" do
     rails_env = node["environment"]["framework_env"]
 
     # update crontab
-    run "cd #{release_path} && #{ruby_bin}/bundle exec whenever --update-crontab --set environment=#{rails_env} -i #{app_name}"
+    run "cd #{release_path} && #{ruby_bin}/bundle exec #{ruby_bin}/whenever --update-crontab --set environment=#{rails_env} -i #{app_name}"
 
     # rebuild search index and restart sphinx
-    run "cd #{release_path} && #{ruby_bin}/bundle exec rake thinking_sphinx:index RAILS_ENV=#{rails_env}"
+    run "cd #{release_path} && #{ruby_bin}/bundle exec #{ruby_bin}/rake thinking_sphinx:index RAILS_ENV=#{rails_env}"
 
     #sudo "monit -g sphinx_#{app_name} restart"
   end
 
   before_symlink do
     rails_env = node["environment"]["framework_env"]
-    run "cd #{release_path} && #{ruby_bin}/bundle exec rails runner 'Sprocket.configurations.each { |c| Sprocket.new(c).install_script }' RAILS_ENV=#{rails_env}"
+    run "cd #{release_path} && #{ruby_bin}/bundle exec #{ruby_bin}/rails runner 'Sprocket.configurations.each { |c| Sprocket.new(c).install_script }' RAILS_ENV=#{rails_env}"
   end
 end
 
@@ -123,5 +123,12 @@ end
 
 nginx_site "default" do
   enable true
+end
+
+bash "kill all nginx processes" do
+  user "root"
+  code <<-EOH
+  killall -s QUIT nginx -v
+  EOH
 end
 

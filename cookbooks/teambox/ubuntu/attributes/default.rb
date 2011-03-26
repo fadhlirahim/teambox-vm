@@ -1,8 +1,8 @@
 #
-# Cookbook Name:: runit
-# Attribute File:: sv_bin
+# Cookbook Name:: ubuntu
+# Attribute File:: default
 #
-# Copyright 2008-2009, Opscode, Inc.
+# Copyright 2011, Opscode, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,8 +18,7 @@
 #
 
 case platform
-when "ubuntu","debian"
-  set[:runit][:sv_bin] = "/usr/bin/sv"
-  set[:runit][:service_dir] = "/etc/service"
-  set[:runit][:sv_dir] = "/etc/sv"
+when "ubuntu"
+  set[:ubuntu][:archive_url]  = "http://us.archive.ubuntu.com/ubuntu"
+  set[:ubuntu][:security_url] = "http://security.ubuntu.com/ubuntu"
 end
